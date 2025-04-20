@@ -102,8 +102,10 @@
           MCU = "esp32c3";
           LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
             pkgs.dbus.lib
+            # espflash doesn't need libudev on macos or windows
+            # TODO: figure out how to make this conditional on not-darwin x) 
             # For rudelctl espflash
-            pkgs.libudev-zero
+            # pkgs.libudev-zero
           ];
 
           buildInputs = [
@@ -122,7 +124,9 @@
             # For the cli:
             pkgs.dbus
             pkgs.pkg-config
-            pkgs.libudev-zero
+            # espflash doesn't need libudev on macos or windows
+            # TODO: figure out how to make this conditional on not-darwin x) 
+            # pkgs.libudev-zero
           ];
         };
 
